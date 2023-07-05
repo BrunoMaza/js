@@ -1,20 +1,36 @@
-//array de objetos
 let productos = [
-  { id: 60500, nombre: "Lámpara de mesa Tortuga Art. 60500", categoria: "Lámparas de mesa", stock: 10, precio: 50000 },
-  { id: 60203, nombre: "Lámpara de mesa Odín Art. 60203", categoria: "Lámparas de mesa", stock: 14, precio: 52000 },
-  { id: 60710, nombre: "Lámpara de mesa Tortuga Art. 60710", categoria: "Lámparas de mesa", stock: 16, precio: 54000 },
-  { id: 77710, nombre: "Lámpara de pie Tortuga Art. 77710", categoria: "Lámparas de pie", stock: 3, precio: 60000 },
-  { id: 66000, nombre: "Lámpara de pie Odín Art. 66000", categoria: "Lámparas de pie", stock: 4, precio: 70000 },
-  { id: 7820, nombre: "Lámpara de pie Pixar XL Art. 7820", categoria: "Lámparas de pie", stock: 5, precio: 80000 },
-  { id: 30900, nombre: "Aplique de pared Dixon Art. 30900", categoria: "Apliques", stock: 10, precio: 35000 },
-  { id: 3430, nombre: "Aplique de pared Dixon Art. 3460", categoria: "Apliques", stock: 11, precio: 40000 },
-  { id: 3700, nombre: "Aplique de pared Dixon Art. 3700", categoria: "Apliques", stock: 12, precio: 45000 },
-  { id: 1300, nombre: "Colgante de techo Dixon Art.1300", categoria: "Colgantes", stock: 7, precio: 25000 },
-  { id: 1200, nombre: "Colgante de techo Dixon Art.1200", categoria: "Colgantes", stock: 5, precio: 23000 },
-  { id: 1212, nombre: "Colgante de techo Dixon Art.1212", categoria: "Colgantes", stock: 10, precio: 23000 },
-];
+  { id: 60500, nombre: "Table lamp 1", categoria: "deportes", stock: 2, precio: 5000, rutaImagen: "Tortuga-Art-60500.jpg" },
+  { id: 60203, nombre: "Table lamp 2", categoria: "indumentaria", stock: 7, precio: 2650, rutaImagen: "Odín-Art-60203.png" },
+  { id: 60710, nombre: "Table lamp 3", categoria: "indumentaria", stock: 4, precio: 4500, rutaImagen: "Tortuga-Art-60710.jpg" },
+  { id: 1200, nombre: "Pendant light 1", categoria: "deportes", stock: 1, precio: 2800, rutaImagen: "Dixon-Art-1200.jpg" },
+  { id: 1212, nombre: "Pendant light 2", categoria: "indumentaria", stock: 3, precio: 7300, rutaImagen: "Odín-Art-1212.png" },
+  { id: 1300, nombre: "Pendant light 3", categoria: "indumentaria", stock: 8, precio: 5600, rutaImagen: "Dixon-Art-1300.jpg" },
+  { id: 77710, nombre: "floor lamp 1", categoria: "indumentaria", stock: 7, precio: 2650, rutaImagen: "Tortuga-Art-77710.jpg" },
+  { id: 66000, nombre: "floor lamp 2", categoria: "indumentaria", stock: 7, precio: 2650, rutaImagen: "Odín-Art-66000.png" },
+  { id: 66000, nombre: "floor lamp 3", categoria: "Lámparas de pie", stock: 7, precio: 50000, rutaImagen: "PixarXL-Art-7820.png" },
+  { id: 77710, nombre: "Wall lamp 1", categoria: "indumentaria", stock: 7, precio: 2650, rutaImagen: "Dixon-Art-30900.jpg" },
+  { id: 66000, nombre: "Wall lamp 2", categoria: "indumentaria", stock: 7, precio: 2650, rutaImagen: "Dixon-Art-30905.png" },
+  { id: 66000, nombre: "Wall lamp 3", categoria: "Lámparas de pie", stock: 7, precio: 50000, rutaImagen: "Tortuga-Art-3460.png" },
+]
 
+productos.forEach(producto => {
+  let mensaje = "Unidades " + producto.stock
 
+  let tarjetaProducto = document.createElement("div")
+
+  if (producto.stock < 5) {
+    mensaje = "Últimas unidades"
+    tarjetaProducto.classList.add("ultimasUnidades")
+  }
+  tarjetaProducto.classList.add("tarjetaProducto")
+  // tarjetaProducto.innerHTML = "<h2>" + producto.nombre + "</h2>" + "<div></div>" + "<p>" + mensaje + "</p>"
+  tarjetaProducto.innerHTML = `
+    <h2>${producto.nombre}</h2>
+    <div class=imagen style="background-image: url(./images/${producto.rutaImagen})"></div>
+    <p>${mensaje}</p>
+  `
+  contenedor.appendChild(tarjetaProducto)
+})
 //variable mensaje
 let mensaje = "Tienda - Luz inteiror SRL\n1 - Listado de productos\n2 - Agregar productos al carrito \n3 - Filtrar por categoría \n4 - Ordenar por precio \n5 - Ver carrito \n6 - Finalizar compra \n0 - Salir"
 
@@ -48,7 +64,6 @@ do {
     } else {
       carrito[posicionProductoEnCarrito].unidades++
       carrito[posicionProductoEnCarrito].subtotal = carrito[posicionProductoEnCarrito].precioUnitario * carrito[posicionProductoEnCarrito].unidades
-
     }
 
     //Filter categorias
@@ -144,9 +159,6 @@ function ordenarPorPrecios(tipoDeOrden, arrayAOrdenar) {
     alert(listarConPrecio(arrayAOrdenar))
   }
 }
-
-
-
 
 
 
